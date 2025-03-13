@@ -1,4 +1,3 @@
-import { setLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import { getParam } from "./utils.mjs";
 // Import aditional functions
@@ -16,13 +15,3 @@ const productDetails = new ProductDetails(productId, dataSource);
 // Llamar al método init() para inicializar todo
 productDetails.init();
 
-// add to cart button event handler
-// async function addToCartHandler(e) {
-//   const product = await dataSource.findProductById(e.target.dataset.id);
-//   addProductToCart(product);
-// }
-
-// add listener to Add to Cart button ctr+k ctr+c --> commet ; ctr+k ctr+u
-// document
-//   .getElementById("addToCart")
-//   .addEventListener("click", addToCartHandler);
