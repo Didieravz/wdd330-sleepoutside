@@ -37,9 +37,9 @@ export default class ProductDetails {
     }
 
     addProductToCart() {
-        let productArray = getLocalStorage("so-cart") || [];
-        productArray.push(this.product);
-        setLocalStorage("so-cart", productArray);
+      let productArray = getLocalStorage("so-cart") || [];
+      productArray.push(this.product);
+      setLocalStorage("so-cart", productArray);
     }
 
     renderProductDetails(selector) {
