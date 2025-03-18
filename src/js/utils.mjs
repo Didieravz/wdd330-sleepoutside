@@ -7,7 +7,23 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  const value = localStorage.getItem(key);
+  // Si el valor no existe o es inválido, devolvemos un array vacío
+  if (!value) {
+    return [];
+  }
+  try {
+    const parsedValue = JSON.parse(value);
+    // Si el valor parseado no es un array, devolvemos un array vacío
+    if (!Array.isArray(parsedValue)) {
+      return [];
+    }
+    return parsedValue;
+  } catch (e) {
+    // Si hay un error al parsear, devolvemos un array vacío
+    console.error("Error parsing localStorage value", e);
+    return [];
+  }
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
@@ -27,4 +43,24 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
   return product;
+}
+
+export function renderListWithTemplate(templateFn, parentElement, list,
+  position = "afterbegin", clear = false) {
+
+  const htmlStrings = list.map(templateFn);
+
+  // Optionally clear the parent element if 'clear' is true
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+
+  // Iterate over the list and apply the template function to render each item
+  // list.forEach(item => {
+  //   // console.log("items de utils.js", item); // línea para ver qué datos estás obteniendo
+  //   const html = templateFn(item);
+  //   parentElement.insertAdjacentHTML(position, html);
+  // });
+
 }
