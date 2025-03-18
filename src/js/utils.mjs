@@ -32,16 +32,19 @@ export function getParam(param) {
 export function renderListWithTemplate(templateFn, parentElement, list,
   position = "afterbegin", clear = false) {
 
+  const htmlStrings = list.map(templateFn);
+
   // Optionally clear the parent element if 'clear' is true
   if (clear) {
     parentElement.innerHTML = "";
   }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 
   // Iterate over the list and apply the template function to render each item
-  list.forEach(item => {
-    // console.log("items de utils.js", item); // línea para ver qué datos estás obteniendo
-    const html = templateFn(item);
-    parentElement.insertAdjacentHTML(position, html);
-  });
+  // list.forEach(item => {
+  //   // console.log("items de utils.js", item); // línea para ver qué datos estás obteniendo
+  //   const html = templateFn(item);
+  //   parentElement.insertAdjacentHTML(position, html);
+  // });
 
 }

@@ -4,7 +4,8 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   // If no items in the cart, show a message
   if (!cartItems || cartItems.length === 0) {
-    document.querySelector(".product-list").innerHTML = "<p>Your cart is empty!</p>";
+    document.querySelector(".product-list").innerHTML =
+      "<p>Your cart is empty!</p>";
     return;
   }
 
@@ -41,7 +42,7 @@ function attachRemoveListeners() {
   // Attach event listeners to all close buttons (X)
   const removeButtons = document.querySelectorAll(".cart-card__remove");
 
-  removeButtons.forEach(button => {
+  removeButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       const productId = event.target.getAttribute("data-id");
 
@@ -56,7 +57,7 @@ function removeItemFromCart(productId) {
   const cartItems = getLocalStorage("so-cart");
 
   // Filter out the item with the matching ID
-  const updatedCart = cartItems.filter(item => item.Id !== productId);
+  const updatedCart = cartItems.filter((item) => item.Id !== productId);
 
   // Update the cart in localStorage
   setLocalStorage("so-cart", updatedCart);
