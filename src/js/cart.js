@@ -4,6 +4,14 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  let totalPrice = 0;
+  cartItems.forEach(item => {
+    totalPrice += item.FinalPrice;
+  });
+
+  document.querySelector("#total").innerHTML = totalPrice
+
 }
 
 function cartItemTemplate(item) {
