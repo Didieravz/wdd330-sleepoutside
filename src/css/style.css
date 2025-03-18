@@ -220,3 +220,14 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* .hide {
+  display: none;
+}
+
+.cart-footer {
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  text-align: right;
+} */
