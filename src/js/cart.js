@@ -2,19 +2,19 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  // If no items in the cart, show a message
-  if (!cartItems || cartItems.length === 0) {
-    document.querySelector(".product-list").innerHTML =
-      "<p>Your cart is empty!</p>";
-    return;
-  }
+    if (cartItems && Array.isArray(cartItems)) {
+      const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+      document.querySelector(".product-list").innerHTML = htmlItems.join("");
+      
+      let totalPrice = 0;
+      cartItems.forEach(item => {
+        totalPrice += item.FinalPrice;
+      });
+    
+      document.querySelector("#total").innerHTML = totalPrice
+    }
 
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  // Insert the generated HTML into the page
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
-  // Attach click listeners to the close buttons
-  attachRemoveListeners();
 }
 
 function cartItemTemplate(item) {
