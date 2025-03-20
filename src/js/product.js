@@ -2,6 +2,10 @@ import ProductData from "./ProductData.mjs";
 import { getParam } from "./utils.mjs";
 // Import aditional functions
 import ProductDetails from "./ProductDetails.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+
+//Load teh header and footer
+loadHeaderFooter();
 
 const dataSource = new ProductData("tents");
 // Obtener el ID del producto de la URL utilizando la función getParam

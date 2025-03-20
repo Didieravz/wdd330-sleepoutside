@@ -1,3 +1,6 @@
+let headerLoaded = false; // Variable para saber si el header ya ha sido cargado
+let footerLoaded = false; // Variable para saber si el footer ya ha sido cargado
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -20,8 +23,6 @@ export function getLocalStorage(key) {
     }
     return parsedValue;
   } catch (e) {
-    // Si hay un error al parsear, devolvemos un array vacío
-    console.error("Error parsing localStorage value", e);
     return [];
   }
 }
@@ -56,11 +57,51 @@ export function renderListWithTemplate(templateFn, parentElement, list,
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 
-  // Iterate over the list and apply the template function to render each item
-  // list.forEach(item => {
-  //   // console.log("items de utils.js", item); // línea para ver qué datos estás obteniendo
-  //   const html = templateFn(item);
-  //   parentElement.insertAdjacentHTML(position, html);
-  // });
+
+}
+export function renderwithTemplate(template, parentElement, data, callback) {
+
+  // Limpiar el contenido antes de insertar nuevo template
+  parentElement.innerHTML = "";
+  parentElement.innerHTML = template;
+
+  if (callback) {
+    callback(data)
+  }
+  parentElement.insertAdjacentHTML("afterbegin", template);
+
+}
+//This asynchronous function fetches the content of the HTML
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  //The response is converted to text and returns the HTML content as a string
+  const template = await res.text();
+  return template;
+}
+
+//Load, Grab out of the DOM and Render the header and footer
+export async function loadHeaderFooter() {
+  // console.log("Cargando loadHeaderFooter");
+  // Cargar el header solo si no ha sido cargado antes
+  if (!headerLoaded) {
+    const headerTemplate = await loadTemplate("../partials/header.html");
+    const headerElement = document.querySelector("#header");
+
+    if (!headerElement.innerHTML.trim()) {
+      renderwithTemplate(headerTemplate, headerElement);
+    }
+    headerLoaded = true; // Marcamos que el header ya fue cargado
+  }
+  // Cargar el footer solo si no ha sido cargado antes
+  if (!footerLoaded) {
+    const footerTemplate = await loadTemplate("../partials/footer.html");
+    const footerElement = document.querySelector("#footer");
+
+    if (!footerElement.innerHTML.trim()) {
+      renderwithTemplate(footerTemplate, footerElement);
+    }
+    footerLoaded = true; // Marcamos que el footer ya fue cargado
+  }
+
 
 }
