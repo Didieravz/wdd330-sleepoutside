@@ -64,3 +64,38 @@ export function renderListWithTemplate(templateFn, parentElement, list,
   // });
 
 }
+export function renderwithTemplate(template, parentElement, data,callback) {
+
+  //const htmlStrings = list.map(template);
+  parentElement.innerHTML = template;
+
+  if (callback) {
+    callback(data)
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+
+  // Iterate over the list and apply the template function to render each item
+  // list.forEach(item => {
+  //   // console.log("items de utils.js", item); // línea para ver qué datos estás obteniendo
+  //   const html = templateFn(item);
+  //   parentElement.insertAdjacentHTML(position, html);
+  // });
+
+}
+ export async function loadTemplate(path){
+  const res = await fetch(path);
+  const template = await res.text();
+  return template;
+ }
+
+ export async function loadHeaderFooter(){
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const headerElement = document.querySelector("#header");
+
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const footerElement = document.querySelector("#footer");
+
+  renderwithTemplate(headerTemplate,headerElement);
+  renderwithTemplate(footerTemplate,footerElement);
+
+ }

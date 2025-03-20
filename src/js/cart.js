@@ -1,4 +1,6 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -14,6 +16,7 @@ function renderCartContents() {
     document.querySelector("#total").innerHTML = totalPrice;
   }
 }
+
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -67,3 +70,5 @@ function removeItemFromCart(productId) {
 // Initial render of the cart contents
 
 renderCartContents();
+
+loadHeaderFooter();
