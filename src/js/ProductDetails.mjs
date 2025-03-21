@@ -1,11 +1,12 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+const baseURL = import.meta.env.VITE_SERVER_URL
 
 function productDetailsTemplate(product) {
-    return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
+  return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryLarge}"
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${product.FinalPrice}</p>
@@ -21,32 +22,32 @@ function productDetailsTemplate(product) {
 
 export default class ProductDetails {
 
-    constructor(productId, dataSource) {
-        this.productId = productId;
-        this.product = {};
-        this.dataSource = dataSource;
-    }
+  constructor(productId, dataSource) {
+    this.productId = productId;
+    this.product = {};
+    this.dataSource = dataSource;
+  }
 
-    async init() {
-        this.product = await this.dataSource.findProductById(this.productId);
-        this.renderProductDetails("main");
+  async init() {
+    this.product = await this.dataSource.findProductById(`${baseURL}product/${this.productId}`);
+    this.renderProductDetails("main");
 
-        document
-            .getElementById("addToCart")
-            .addEventListener("click", this.addProductToCart.bind(this));
-    }
+    document
+      .getElementById("addToCart")
+      .addEventListener("click", this.addProductToCart.bind(this));
+  }
 
-    addProductToCart() {
-      let productArray = getLocalStorage("so-cart") || [];
-      productArray.push(this.product);
-      setLocalStorage("so-cart", productArray);
-    }
+  addProductToCart() {
+    let productArray = getLocalStorage("so-cart") || [];
+    productArray.push(this.product);
+    setLocalStorage("so-cart", productArray);
+  }
 
-    renderProductDetails(selector) {
-        const element = document.querySelector(selector);
-        element.insertAdjacentHTML("afterBegin", productDetailsTemplate(this.product));
+  renderProductDetails(selector) {
+    const element = document.querySelector(selector);
+    element.insertAdjacentHTML("afterBegin", productDetailsTemplate(this.product));
 
-    }
+  }
 
 
 
