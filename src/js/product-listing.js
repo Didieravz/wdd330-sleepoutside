@@ -7,7 +7,6 @@ loadHeaderFooter();
 const category = getParam("category");
 // Create a instance of ProductData to recuperate the data
 const dataSource = new ProductData();
-console.log("data recuperada", dataSource);
 // obtain the ul element from index with its class
 const element = document.querySelector(".product-list");
 

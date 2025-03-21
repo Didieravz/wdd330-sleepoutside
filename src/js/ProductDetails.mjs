@@ -29,7 +29,7 @@ export default class ProductDetails {
   }
 
   async init() {
-    this.product = await this.dataSource.findProductById(`${baseURL}product/${this.productId}`);
+    this.product = await this.dataSource.findProductById(this.productId);
     this.renderProductDetails("main");
 
     document

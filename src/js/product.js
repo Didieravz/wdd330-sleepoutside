@@ -7,7 +7,8 @@ import { loadHeaderFooter } from "./utils.mjs";
 //Load teh header and footer
 loadHeaderFooter();
 
-const dataSource = new ProductData("tents");
+
+const dataSource = new ProductData();
 // Obtener el ID del producto de la URL utilizando la función getParam
 const productId = getParam("product");
 
