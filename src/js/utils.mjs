@@ -68,6 +68,8 @@ export function renderwithTemplate(template, parentElement, data, callback) {
   if (callback) {
     callback(data)
   }
+
+  // This line of code is duplicating header and footer
   parentElement.insertAdjacentHTML("afterbegin", template);
 
 }
