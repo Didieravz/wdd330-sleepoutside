@@ -381,3 +381,29 @@ footer {
     flex-direction: row;
   }
 }
+
+/* Estilo para la "X" del carrito */
+.cart-card__remove {
+  font-size: 1.5em;
+  /* Aumentamos el tamaño de la "X" */
+  color: var(--primary-color);
+  /* Color principal del sitio */
+  cursor: pointer;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  /* Fondo blanco con opacidad */
+  border-radius: 50%;
+  /* Hacemos que la "X" tenga bordes redondeados */
+
+}
+
+/* Efecto al pasar el cursor */
+.cart-card__remove:hover {
+  background-color: var(--primary-color);  /* Fondo cambia al color principal */
+  color: white;
+}
+
+/* Efecto cuando se hace clic en la "X" */
+.cart-card__remove:active {
+  transform: scale(0.9);  /* Un pequeño efecto de reducción al hacer clic */
+}

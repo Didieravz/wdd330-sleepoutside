@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCountInHeader } from "./utils.mjs";
 
 export default class ShoppingCart {
     constructor(cartContainer) {
@@ -30,7 +30,7 @@ export default class ShoppingCart {
         return `
       <li class="cart-card divider">
         <a href="#" class="cart-card__image">
-          <img src="${item.Image}" alt="${item.Name}" />
+          <img src="${item.Images.PrimaryMedium}" alt="${item.Name}" />
         </a>
         <a href="#">
           <h2 class="card__name">${item.Name}</h2>
@@ -67,5 +67,7 @@ export default class ShoppingCart {
         setLocalStorage("so-cart", updatedCart);
 
         this.renderCartContents(); // Re-render the cart
+        // Actualizar el contador del carrito al cargar la página
+        updateCartCountInHeader();
     }
 }

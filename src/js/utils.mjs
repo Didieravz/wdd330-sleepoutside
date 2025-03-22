@@ -94,6 +94,8 @@ export async function loadHeaderFooter() {
     }
     headerLoaded = true; // Marcamos que el header ya fue cargado
   }
+  // Llamar a updateCartCountInHeader después de cargar el header
+  updateCartCountInHeader();  // Actualiza el contador después de cargar el header
   // Cargar el footer solo si no ha sido cargado antes
   if (!footerLoaded) {
     const footerTemplate = await loadTemplate("../partials/footer.html");
@@ -107,3 +109,22 @@ export async function loadHeaderFooter() {
 
 
 }
+
+// utils.js
+
+export function updateCartCountInHeader() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const cartCount = cartItems.length; // Número de productos en el carrito
+
+  const cartCountElement = document.getElementById("cartCount");
+
+  if (cartCountElement) {
+    cartCountElement.textContent = cartCount; // Actualiza el contador en el icono del carrito
+  }
+}
+
+
+// Llamada al cargar la página para asegurar que el contador esté actualizado
+document.addEventListener("DOMContentLoaded", function () {
+  updateCartCountInHeader();
+});

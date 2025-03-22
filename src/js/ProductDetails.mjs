@@ -1,5 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-const baseURL = import.meta.env.VITE_SERVER_URL
+import { getLocalStorage, setLocalStorage, updateCartCountInHeader } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -30,6 +29,7 @@ export default class ProductDetails {
 
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
+    // console.log("producdetails ", this.product);
     this.renderProductDetails("main");
 
     document
@@ -41,6 +41,7 @@ export default class ProductDetails {
     let productArray = getLocalStorage("so-cart") || [];
     productArray.push(this.product);
     setLocalStorage("so-cart", productArray);
+    updateCartCountInHeader(); // Actualiza el contador del carrito
   }
 
   renderProductDetails(selector) {
