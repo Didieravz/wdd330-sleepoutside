@@ -70,7 +70,7 @@ export function renderwithTemplate(template, parentElement, data, callback) {
   }
 
   // This line of code is duplicating header and footer
-  parentElement.insertAdjacentHTML("afterbegin", template);
+  // parentElement.insertAdjacentHTML("afterbegin", template);
 
 }
 //This asynchronous function fetches the content of the HTML
