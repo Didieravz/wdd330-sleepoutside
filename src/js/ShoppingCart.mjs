@@ -18,7 +18,7 @@ export default class ShoppingCart {
             const htmlItems = cartItems.map((item) => this.cartItemTemplate(item));
             this.cartContainer.innerHTML = htmlItems.join(""); // Render the items from the cart
         } else {
-            this.cartContainer.innerHTML = "<p>Your cart is empty!</p>"; // Si el carrito está vacío, mostrar un mensaje
+            this.cartContainer.innerHTML = "<p>Your cart is empty!</p>"; // Si el carrito está vacío, mostrar un mensaje/If the cart is empty, display a message
         }
 
         this.updateTotal(cartItems);
