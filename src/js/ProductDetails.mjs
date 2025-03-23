@@ -16,7 +16,6 @@ function productDetailsTemplate(product) {
     <div class="product-detail__add">
       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
     </div></section>`;
-
 }
 
 export default class ProductDetails {
@@ -29,7 +28,7 @@ export default class ProductDetails {
 
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
-        this.renderProductDetails("main");
+        this.renderProductDetails();
 
         document
             .getElementById("addToCart")
@@ -45,10 +44,5 @@ export default class ProductDetails {
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
         element.insertAdjacentHTML("afterBegin", productDetailsTemplate(this.product));
-
     }
-
-
-
-
 }
