@@ -5,8 +5,8 @@ function productCardTemplate(product) {
     return `
         <li class="product-card">
             <a href="product_pages/?product=${product.Id}">
-                <img src="${product.Image}" alt="Image of ${product.Name}" />
-                <h3 class="card__brand">${product.Brand.Name}</h3>
+                <img src="${product.Image?.primaryMedium}" alt="Image of ${product.Name}" />
+                <h3 class="card__brand">${product?.Brand.Name}</h3>
                 <h2 class="card__name">${product.NameWithoutBrand}</h2>
                 <p class="product-card__price">$${product.FinalPrice}</p>
             </a>
@@ -29,6 +29,7 @@ export default class ProductList {
         // console.log(list); // Agrega esta línea para ver qué datos estás obteniendo
         // render the list
         this.renderList(list);
+        document.querySelector(".title").textContent = this.category;
     }
     // render after doing the first stretch
     renderList(list) {

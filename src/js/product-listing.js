@@ -6,11 +6,13 @@ loadHeaderFooter();
 
 const category = getParam("category");
 // Create a instance of ProductData to recuperate the data
-const dataSource = new ProductData("tents");
+const dataSource = new ProductData();
 // obtain the ul element from index with its class
-const element = document.querySelector(".product-list");
+const listElement = document.querySelector(".product-list");
 
 //create a new instance of ProductList
-const list = new ProductList(category, dataSource, element);
+const myList = new ProductList(category, dataSource, listElement);
 // Call the init metod from ProductList
-list.init();
+myList.init();
+
+
