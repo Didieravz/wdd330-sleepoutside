@@ -11,8 +11,8 @@ const dataSource = new ProductData("tents");
 const productId = getParam("product");
 
 //New instance of product details
-const productDetails = new ProductDetails(productId, dataSource);
+const product = new ProductDetails(productId, dataSource);
 
 // call the metod init from ProductDetails
 // Llamar al método init() para inicializar todo/Call the init() method to initialize everything
-productDetails.init();
+product.init();
