@@ -37,7 +37,7 @@ export default class ShoppingCart {
           <h2 class="card__name">${item.Name}</h2>
         </a>
         <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-        <p class="cart-card__quantity">qty: 1</p>
+        <p class="cart-card__quantity">qty: ${item.quantity}</p>
         <p class="cart-card__price">$${item.FinalPrice}</p>
         <span class="cart-card__remove" data-id="${item.Id}">X</span> <!-- Close button with data-id -->
       </li>
@@ -45,7 +45,7 @@ export default class ShoppingCart {
     }
 
     updateTotal(cartItems) {
-        const totalPrice = cartItems.reduce((total, item) => total + item.FinalPrice, 0);
+        const totalPrice = cartItems.reduce((total, item) => total + item.FinalPrice * item.quantity, 0);
         const totalElement = document.querySelector("#total");
         if (totalElement) totalElement.innerHTML = totalPrice;
     }
@@ -69,4 +69,5 @@ export default class ShoppingCart {
 
         this.renderCartContents(); // Re-render the cart
     }
+
 }
