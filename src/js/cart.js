@@ -12,3 +12,9 @@ const shoppingCart = new ShoppingCart(cartContainer);
 
 // Renderizar los contenidos del carrito/Render the cart contents.
 shoppingCart.renderCartContents();
+
+const cartItems = shoppingCart.loadCartItems();
+console.log("Cart Items:", cartItems);
+const buttonCheckOut = document.querySelector(".checkout-btn hide");
+
+
