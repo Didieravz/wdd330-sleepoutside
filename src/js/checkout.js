@@ -1,9 +1,18 @@
+import checkoutProcess from "./checkoutProcess.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
 //load the header and footer
 loadHeaderFooter();
 
-function orderSummary(cartItems) {
-  const subTotal = cartItems. 
-}
+const order = new checkoutProcess("so-cart", ".checkout-summary");
+order.init();
 
+document
+  .querySelector("#zip")
+  .addEventListener("blur", order.calculateOrderTotal.bind(order));
+
+document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  order.checkout();
+});
