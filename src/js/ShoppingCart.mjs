@@ -5,7 +5,7 @@ export default class ShoppingCart {
         // Container to show the cart ( <ul class="product-list">)
         this.cartContainer = cartContainer;
         this.cartItems = this.loadCartItems(); // Load the items from the localStorage
-        
+
     }
 
     async loadCartItems() {
@@ -15,7 +15,7 @@ export default class ShoppingCart {
 
     async renderCartContents() {
         const cartItems = await this.loadCartItems();
-        
+
         if (cartItems.length > 0) {
             const htmlItems = cartItems.map((item) => this.cartItemTemplate(item));
             this.cartContainer.innerHTML = htmlItems.join(""); // Render the items from the cart
@@ -29,10 +29,6 @@ export default class ShoppingCart {
     }
 
     cartItemTemplate(item) {
-        // html structure to add cart/index.html <ul class="product-list">
-        // <p class="cart-card__quantity">qty: 1</p>
-        // <p class="cart-card__price">$${item.FinalPrice}</p>
-        // <span class="cart-card__remove" data-id="${item.Id}">X</span> <!-- Close button with data-id -->
         return `
       <li class="cart-card divider">
         <a href="#" class="cart-card__image">
@@ -69,56 +65,56 @@ export default class ShoppingCart {
     }
 
     attachQuantityChangeListeners() {
-      const quantityInputs = document.querySelectorAll(".cart-card__quantity");
+        const quantityInputs = document.querySelectorAll(".cart-card__quantity");
 
-      quantityInputs.forEach((input) => {
-          input.addEventListener("change", (event) => {
-              const newQuantity = parseInt(event.target.value);
-              const productId = event.target.getAttribute("data-id");
+        quantityInputs.forEach((input) => {
+            input.addEventListener("change", (event) => {
+                const newQuantity = parseInt(event.target.value);
+                const productId = event.target.getAttribute("data-id");
 
-              if (newQuantity < 1) {
-                  event.target.value = 1; // Prevent quantity from being less than 1
-                  return;
-              }
+                if (newQuantity < 1) {
+                    event.target.value = 1; // Prevent quantity from being less than 1
+                    return;
+                }
 
-              this.updateCartQuantity(productId, newQuantity);
-          });
-      });
-  }
+                this.updateCartQuantity(productId, newQuantity);
+            });
+        });
+    }
 
-  updateCartQuantity(productId, newQuantity) {
-      let cartItems = getLocalStorage("so-cart");
+    updateCartQuantity(productId, newQuantity) {
+        let cartItems = getLocalStorage("so-cart");
 
-      cartItems = cartItems.map((item) => {
-          if (item.Id === productId) {
-              return { ...item, quantity: newQuantity };
-          }
-          return item;
-      });
+        cartItems = cartItems.map((item) => {
+            if (item.Id === productId) {
+                return { ...item, quantity: newQuantity };
+            }
+            return item;
+        });
 
-      setLocalStorage("so-cart", cartItems);
-      this.updateItemPrice(productId, newQuantity);
-      this.updateTotal(cartItems);
-  }
+        setLocalStorage("so-cart", cartItems);
+        this.updateItemPrice(productId, newQuantity);
+        this.updateTotal(cartItems);
+    }
 
-  updateItemPrice(productId, newQuantity) {
-      const cartItems = getLocalStorage("so-cart");
-      const item = cartItems.find((Aitem) => Aitem.Id === productId);
+    updateItemPrice(productId, newQuantity) {
+        const cartItems = getLocalStorage("so-cart");
+        const item = cartItems.find((Aitem) => Aitem.Id === productId);
 
-      if (item) {
-          const priceElement = document.querySelector(`.cart-card__price[data-id="${productId}"]`);
-          if (priceElement) {
-              priceElement.textContent = `$${(item.FinalPrice * newQuantity).toFixed(2)}`;
-          }
-      }
-  }
+        if (item) {
+            const priceElement = document.querySelector(`.cart-card__price[data-id="${productId}"]`);
+            if (priceElement) {
+                priceElement.textContent = `$${(item.FinalPrice * newQuantity).toFixed(2)}`;
+            }
+        }
+    }
 
-  removeItemFromCart(productId) {
-      const cartItems = getLocalStorage("so-cart");
+    removeItemFromCart(productId) {
+        const cartItems = getLocalStorage("so-cart");
 
-      const updatedCart = cartItems.filter((item) => item.Id !== productId);
-      setLocalStorage("so-cart", updatedCart);
+        const updatedCart = cartItems.filter((item) => item.Id !== productId);
+        setLocalStorage("so-cart", updatedCart);
 
-      this.renderCartContents(); // Re-render the cart
-  }
+        this.renderCartContents(); // Re-render the cart
+    }
 }
