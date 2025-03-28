@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import CheckoutProcess from "./CheckoutProcess.mjs"; // Importa la clase CheckoutProcess
+=======
+import checkoutProcess from "./checkoutProcess.mjs";
+>>>>>>> 48c143d7fbb0e6ebdb6adc199ffd7226ba47a09f
 import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
