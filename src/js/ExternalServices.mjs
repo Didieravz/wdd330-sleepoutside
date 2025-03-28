@@ -8,7 +8,7 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
   constructor() {
     // this.category = category;
     // this.path = `../public/json/${this.category}.json`;
@@ -25,5 +25,25 @@ export default class ProductData {
     const data = await convertToJson(response);
     console.log(data.Result);
     return data.Result;
+  }
+
+  static async submitOrder(orderData) {
+    const url = `${baseURL}checkout/`; // URL for checkout submission
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(orderData) // Convert the order data to JSON
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+      return data; // Return the response from the server
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      throw new Error("There was an error submitting the order.");
+    }
   }
 }

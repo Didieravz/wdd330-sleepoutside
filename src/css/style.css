@@ -85,7 +85,7 @@ header {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -256,4 +256,75 @@ footer {
   background-color: #f8f8f8;
   border-top: 1px solid #ddd;
   text-align: right;
+}
+
+/**Estilos para el formulario de checkout**/
+/* Estilos para el formulario de checkout */
+form#checkoutForm {
+  max-width: 800px;
+  margin: 2em auto;
+  padding: 1.5em;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form#checkoutForm h3 {
+  font-size: 1.3em;
+  color: var(--primary-color);
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+form#checkoutForm .form-group {
+  margin-bottom: 1em;
+}
+
+form#checkoutForm .form-group label {
+  display: block;
+  font-size: 1em;
+  color: var(--dark-grey);
+}
+
+form#checkoutForm .form-group input {
+  width: 100%;
+  padding: 0.8em;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+form#checkoutForm .form-group input:focus {
+  border-color: var(--primary-color);
+}
+
+form#checkoutForm button {
+  width: 100%;
+  padding: 1em;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+form#checkoutForm button:hover {
+  background-color: var(--primary-color);
+}
+
+.orderSummary {
+  margin-top: 1.5em;
+  background: #f7f7f7;
+  padding: 1em;
+  border-radius: 6px;
+}
+
+.orderSummary p {
+  margin: 0.5em 0;
+  font-size: 1em;
+}
+
+.orderSummary span {
+  font-weight: bold;
 }
