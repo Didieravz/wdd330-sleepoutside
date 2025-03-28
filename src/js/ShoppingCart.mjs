@@ -5,6 +5,7 @@ export default class ShoppingCart {
         // Container to show the cart ( <ul class="product-list">)
         this.cartContainer = cartContainer;
         this.cartItems = this.loadCartItems(); // Load the items from the localStorage
+        
     }
 
     async loadCartItems() {
@@ -14,6 +15,7 @@ export default class ShoppingCart {
 
     async renderCartContents() {
         const cartItems = await this.loadCartItems();
+        
         if (cartItems.length > 0) {
             const htmlItems = cartItems.map((item) => this.cartItemTemplate(item));
             this.cartContainer.innerHTML = htmlItems.join(""); // Render the items from the cart

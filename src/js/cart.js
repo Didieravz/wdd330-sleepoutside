@@ -12,3 +12,16 @@ const shoppingCart = new ShoppingCart(cartContainer);
 
 // Renderizar los contenidos del carrito/Render the cart contents.
 shoppingCart.renderCartContents();
+
+const cartItems = shoppingCart.loadCartItems();
+// console.log("Cart Items:", cartItems);
+
+
+const buttonCheckOut = document.querySelector(".checkout-btn");
+buttonCheckOut.classList.remove("hide");
+
+buttonCheckOut.addEventListener("click", (event) => {
+    event.preventDefault();
+    // Redirect to the checkout page
+    window.location.href = "../checkout/index.html"; // Redirige a la página de checkout
+});
