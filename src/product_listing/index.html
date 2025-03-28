@@ -14,6 +14,18 @@
   <main class="divider">
     <section class="products">
       <h2>Top Products: <span class="title highlight"></span></h2>
+
+      <!-- Agregar un selector para ordenar los productos -->
+      <div class="sort-controls">
+        <label for="sortBy">Sort By:</label>
+        <select id="sortBy">
+          <option value="nameAsc">Name (A-Z)</option>
+          <option value="nameDesc">Name (Z-A)</option>
+          <option value="priceAsc">Price (Low to High)</option>
+          <option value="priceDesc">Price (High to Low)</option>
+        </select>
+      </div>
+
       <ul class="product-list"></ul>
     </section>
   </main>
@@ -21,30 +33,3 @@
 </body>
 
 </html>
-
-<!-- <main class="divider">
-    <div class="hero">
-      <img
-        src="/images/banner-sm.jpg"
-        srcset="images/banner-sm.jpg 500w, images/banner.jpg"
-        alt="image of a high mountain lake"
-      />
-      <div class="logo logo--square">
-        <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
-        <div>Sleep<span class="highlight">Outside</span></div>
-      </div>
-    </div>
-    <section class="mission">
-      <p>We spend too much time these days indoors...sitting usually.</p>
-      <p>No wonder we are a mess!</p>
-      <p>
-        What we really need is to get outside...in fact SLEEP outside. Our
-        mission is to provide you with everything you need to do this
-        comfortably at an affordable price.
-      </p>
-    </section>
-    <section class="products">
-      <h2>Top Products</h2>
-      <ul class="product-list"></ul>
-    </section>
-  </main> -->
