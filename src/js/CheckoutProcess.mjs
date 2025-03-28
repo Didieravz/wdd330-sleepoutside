@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 
@@ -122,8 +122,31 @@ export default class CheckoutProcess {
             shipping: this.shipping,
             tax: this.tax.toFixed(2)
         };
-        const response = await ExternalServices.submitOrder(orderData);
-        console.log("Server response:", response);
+        try {
+            // Attempt to submit the order
+            const response = await ExternalServices.submitOrder(orderData);
+
+            // If response is successful, log it and proceed
+            console.log("Server response:", response);
+
+            // Redirect to success page after successful checkout
+            window.location.href = "/checkout/success.html";
+
+            // Clear cart from localStorage
+            setLocalStorage(this.key, []);
+        } catch (error) {
+            // Handle error and show a user-friendly message
+            if (error.name === "servicesError") {
+                // If it's a servicesError, display the detailed error message from the server
+                alert("There was an error with your order: " + JSON.stringify(error.message));
+            } else {
+                // If it's a different kind of error (e.g., network issue), display a general error message
+                alert("There was a problem with your order. Please try again.");
+            }
+
+            // Log the error to the console for debugging purposes
+            console.log("Error:", error);
+        }
     }
 
 }

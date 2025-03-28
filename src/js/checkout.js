@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Attach event listener for form submission
   checkoutForm.addEventListener("submit", (event) => {
-    checkoutProcess.handleCheckoutFormSubmit(event);
+    const myForm = document.forms[0];
+    const chk_status = myForm.checkValidity();
+    myForm.reportValidity();
+    if (chk_status) {
+      checkoutProcess.handleCheckoutFormSubmit(event);
+    }
   });
 });
