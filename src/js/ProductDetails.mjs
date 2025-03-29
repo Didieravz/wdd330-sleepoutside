@@ -39,6 +39,11 @@ export default class ProductDetails {
 }
 
 function productDetailsTemplate(product) {
+  const originalPrice=product.SuggestedRetailPrice || product.FinalPrice //Se toma el precio original del producto. Si el producto no tiene un precio definido se una el FinalPrice
+  const discountedPrice=product.FinalPrice; //El precio real que pagará el cliente
+  const discount =originalPrice>discountedPrice
+  
+  ? Math.round(((originalPrice - discountedPrice)/ originalPrice)*100) : 0;
     return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
       <h2 class="divider">${product.NameWithoutBrand}</h2>
       <img
