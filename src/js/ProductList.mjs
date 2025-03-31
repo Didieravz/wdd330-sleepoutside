@@ -30,7 +30,7 @@ export default class ProductList {
 
         // render the list
         this.renderList(list);
-        // **********************************.title DOES NOT exists***********************
+       
         document.querySelector(".title").textContent = this.category;
     }
     // render after doing the first stretch
