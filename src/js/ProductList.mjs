@@ -1,25 +1,5 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
-// function addDiscountIndicator(product) {
-//   if (product.FinalPrice < product.SuggestedRetailPrice) {
-//       const discountPercentage = Math.round(
-//           ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100
-//       );
-      
-//       const productElement = document.querySelector(`[data-product-id='${product.Id}']`);
-//       if (productElement) {
-//           const discountBadge = document.createElement("div");
-//           discountBadge.textContent = `-${discountPercentage}% OFF`;
-//           productElement.appendChild(discountBadge);
-//       }
-//   }
-// }
-// document.addEventListener("DOMContentLoaded", () => {
-//   addDiscountIndicator();
-// });
-
-
-
 // Template for rendering product cards
 function productCardTemplate(product) {
     return `
