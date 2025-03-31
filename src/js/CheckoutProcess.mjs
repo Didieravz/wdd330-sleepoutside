@@ -123,17 +123,17 @@ export default class CheckoutProcess {
             tax: this.tax.toFixed(2)
         };
         try {
-            // Attempt to submit the order
-            const response = await ExternalServices.submitOrder(orderData);
+          // Attempt to submit the order
+          const response = await ExternalServices.submitOrder(orderData);
 
-            // If response is successful, log it and proceed
-            console.log("Server response:", response);
+          // If response is successful, log it and proceed
+          console.log("Server response:", response);
 
-            // Redirect to success page after successful checkout
-            window.location.href = "/checkout/success.html";
+          // Redirect to success page after successful checkout
+          window.location.href = "/checkout/success.html";
 
-            // Clear cart from localStorage
-            setLocalStorage(this.key, []);
+          // Clear cart from localStorage
+          setLocalStorage(this.key, []);
         } catch (error) {
             // Handle error and show a user-friendly message
             if (error.name === "servicesError") {

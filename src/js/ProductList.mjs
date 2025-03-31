@@ -1,5 +1,25 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
+// function addDiscountIndicator(product) {
+//   if (product.FinalPrice < product.SuggestedRetailPrice) {
+//       const discountPercentage = Math.round(
+//           ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100
+//       );
+      
+//       const productElement = document.querySelector(`[data-product-id='${product.Id}']`);
+//       if (productElement) {
+//           const discountBadge = document.createElement("div");
+//           discountBadge.textContent = `-${discountPercentage}% OFF`;
+//           productElement.appendChild(discountBadge);
+//       }
+//   }
+// }
+// document.addEventListener("DOMContentLoaded", () => {
+//   addDiscountIndicator();
+// });
+
+
+
 // Template for rendering product cards
 function productCardTemplate(product) {
     return `
@@ -8,7 +28,9 @@ function productCardTemplate(product) {
                 <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
                 <h3 class="card__brand">${product.Brand.Name}</h3>
                 <h2 class="card__name">${product.NameWithoutBrand}</h2>
-                <p class="product-card__price">$${product.FinalPrice}</p>
+                <p class="product-card__price">Suggested Retail Price $${product.SuggestedRetailPrice}</p>
+                <p class="product-card__price">Final Price $${product.FinalPrice}</p>
+                <p class="product-card__price">Discount Total $${(product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)}</p>
             </a>
         </li>
     `;
