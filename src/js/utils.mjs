@@ -106,8 +106,47 @@ export async function loadHeaderFooter() {
     }
     footerLoaded = true; // Marcamos que el footer ya fue cargado/We mark that the footer has already been loaded.
   }
+  initSignupModal();
 
+// Creando el cuerpo de Sign up
+function initSignupModal(){
+  const modal = document.getElementById('signupModal');
+  const openBtn = document.getElementById('openModalBtn');
+  const closeBtn = document.querySelector('.close');
 
+  openBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    try {
+      const response = await fetch('https://webhook.site/7a34d1cc-48d0-4161-9986-60eac37981c2', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      });
+
+      alert('Account created! ✅');
+      e.target.reset();
+      modal.style.display = 'none';
+    } catch (err) {
+      alert('Network error');
+    }
+  });
+ }  
 }
 
 
