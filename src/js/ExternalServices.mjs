@@ -16,7 +16,7 @@ export default class ExternalServices {
   async getData(category) {
     const response = await fetch(`${baseURL}products/search/${category} `);
     const data = await convertToJson(response);
-    console.log(data.Result);
+    console.log("Respuesta de la API (getData):",data.Result);
     return data.Result;
   }
 
@@ -45,5 +45,27 @@ export default class ExternalServices {
       console.error("Error submitting order:", error);
       throw new Error("There was an error submitting the order.");
     }
+  }
+  async getAllProducts() {
+    const response = await fetch(`${baseURL}products`);
+    const data = await convertToJson(response);
+    return data.Result;  // Esto te da la lista completa de productos
+  }
+  
+  // //async searchProducts(query) {
+  //   const allProducts = await this.getAllProducts();
+  //   const filteredProducts = allProducts.filter(product =>
+  //     product.Name.toLowerCase().includes(query.toLowerCase())
+  //   );
+  //   return filteredProducts;  // Solo productos que coinciden con el término de búsqueda
+  // }
+  async searchProducts(query) {
+    const response = await fetch(`${baseURL}products`);  // Trae todos los productos
+    const data = await convertToJson(response);
+    console.log("Datos de la API para búsqueda:", data);
+    const filteredProducts = data.Result.filter(product =>
+      product.Name.toLowerCase().includes(query.toLowerCase())  // Filtra por nombre
+    );
+    return filteredProducts;
   }
 }

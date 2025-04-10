@@ -65,4 +65,19 @@ export default class ProductList {
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
+    // Nuevo método para búsqueda
+async searchInit(searchTerm) {
+    const list = await this.dataSource.searchProducts(searchTerm);
+    this.products = list; // Guardamos los productos por si queremos ordenarlos también
+    this.renderList(list);
+
+    // Si existe el selector de orden, también se puede usar con resultados de búsqueda
+    const sortBySelect = document.querySelector("#sortBy");
+    if (sortBySelect) {
+        sortBySelect.addEventListener("change", (event) => {
+            this.sortProducts(event.target.value);
+        });
+    }
+}
+
 }

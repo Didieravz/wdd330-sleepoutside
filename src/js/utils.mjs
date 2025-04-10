@@ -106,6 +106,20 @@ export async function loadHeaderFooter() {
     }
     footerLoaded = true; // Marcamos que el footer ya fue cargado/We mark that the footer has already been loaded.
   }
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchForm = document.getElementById("search-form");
+  
+    if (searchForm) {
+      searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const query = document.getElementById("search-input").value.trim();
+        if (query) {
+          // Redirige con el término de búsqueda como parámetro
+          window.location.href = `/product_listing/index.html?search=${encodeURIComponent(query)}`;
+        }
+      });
+    }
+  });
 
 
 }
